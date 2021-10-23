@@ -7,10 +7,17 @@ import static com.coderstea.squidgame.util.Util.sleep;
 
 public class RedLightGreenLight implements SquidGame {
 
+  //Use Windows ANSI color code
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_RED = "\u001B[31m";
+  public static final String ANSI_GREEN = "\u001B[32m";
+  public static final String ANSI_CYAN = "\u001B[36m";
+
   // Windows User may not be able to see actual Red Emoji
-  private static final String RED_LIGHT = "Red Light 🔴 👧";
-  private static final String GREEN_LIGHT = "Green Light 🟢 👧";
-  private static final String GAME_OVER = "Game Over 🤯🔫 (press Enter)";
+  private static final String RED_LIGHT = ANSI_RED + "Red Light 🔴 👧" + ANSI_RESET;
+  private static final String GREEN_LIGHT = ANSI_GREEN + "Green Light 🟢 👧"+ ANSI_RESET;
+  private static final String GAME_OVER = ANSI_CYAN + "💔 Game Over 🤯🔫  😵 (press Enter)"+ ANSI_RESET;
+
 
   private static final int TIME_LIMIT = 1000 * 60; //  1 Minute
   private static final int BREATHER = 500;
@@ -25,7 +32,7 @@ public class RedLightGreenLight implements SquidGame {
   @Override
   public void startGame() throws InterruptedException {
     scanner = new Scanner(System.in);
-    boolean continuePlaying = false;
+    boolean continuePlaying;
     do {
       // resetting varibales
       pressCount = 0;
